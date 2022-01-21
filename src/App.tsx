@@ -16,10 +16,12 @@ interface playerData {
 
 let leaderboardData: playerData[] = [];
 
-window.playM = "local";
-window.p1t = "X";
-window.p2t = "O";
-window.win = null;
+let win: any = window;
+
+win.playM = "local";
+win.p1t = "X";
+win.p2t = "O";
+win.win = null;
 
 for (let i = 0; i < 10; i++) {
   leaderboardData.push({
@@ -131,33 +133,33 @@ class Box extends React.Component<{ num: string; i: number }, {}> {
   constructor(props: any) {
     super(props);
     this.props = props;
-    this.state = { spot: window.board[props.i], id: "p1", i: props.i };
+    this.state = { spot: win.board[props.i], id: "p1", i: props.i };
   }
 
   press() {
-    if (window.board[this.props.i] == null && window.win == null) {
+    if (win.board[this.props.i] == null && win.win == null) {
       let i = this.props.i;
-      if (window.turn === "p1") {
-        window.board[i] = window.p1t;
+      if (win.turn === "p1") {
+        win.board[i] = win.p1t;
       } else {
-        window.board[i] = window.p2t;
+        win.board[i] = win.p2t;
       }
 
-      this.setState({ id: window.turn, spot: window.board[i] });
+      this.setState({ id: win.turn, spot: win.board[i] });
 
-      if (window.turn === "p1") {
-        window.turn = "p2";
+      if (win.turn === "p1") {
+        win.turn = "p2";
       } else {
-        window.turn = "p1";
+        win.turn = "p1";
       }
 
       this.checkWin();
-      window.infoUp({ turn: window.turn });
+      win.infoUp({ turn: win.turn });
     }
   }
 
   checkWin() {
-    let b = window.board;
+    let b = win.board;
     let arr = [
       [0, 1, 2],
       [3, 4, 5],
@@ -173,10 +175,10 @@ class Box extends React.Component<{ num: string; i: number }, {}> {
       if (b[arr[i][0]] != null) {
         //console.log("!null");
         if (b[arr[i][0]] === b[arr[i][1]] && b[arr[i][1]] === b[arr[i][2]]) {
-          if (b[arr[i][0]] === window.p1t) {
-            window.win = "p1";
-          } else if (b[arr[i][0]] === window.p1t) {
-            window.win = "p2";
+          if (b[arr[i][0]] === win.p1t) {
+            win.win = "p1";
+          } else if (b[arr[i][0]] === win.p1t) {
+            win.win = "p2";
           }
         }
       }
@@ -199,16 +201,16 @@ class Box extends React.Component<{ num: string; i: number }, {}> {
 
 class Board extends React.Component {
   state: any;
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
-    window.turn = "p1";
+    win.turn = "p1";
 
-    window.board = [null, null, null, null, null, null, null, null, null];
+    win.board = [null, null, null, null, null, null, null, null, null];
   }
 
   render() {
-    if (window.playM === "local") {
+    if (win.playM === "local") {
       return (
         <div className="board">
           <Box i={0} />
@@ -245,7 +247,7 @@ class Vs extends React.Component<
 > {
   player1: playerData;
   player2: playerData;
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.player1 = props.player1;
     this.player2 = props.player2;
@@ -274,12 +276,13 @@ class Info extends React.Component<
 > {
   player1: playerData;
   player2: playerData;
-  constructor(props) {
+  state: any;
+  constructor(props: any) {
     super(props);
     this.player1 = props.player1;
     this.player2 = props.player2;
     this.state = { turn: "p1" };
-    window.infoUp = this.setState.bind(this);
+    win.infoUp = this.setState.bind(this);
   }
   render() {
     return (

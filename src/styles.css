@@ -39,9 +39,6 @@ body {
 
 .board {
   margin: 5%;
-  grid-row-start: 1;
-  grid-row-end: 3;
-
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -61,6 +58,7 @@ body {
   border: 5px solid rgb(0, 0, 0);
   outline: none;
   aspect-ratio: 1;
+  font-size: 1.5em;
 }
 
 #p1 {
@@ -136,4 +134,43 @@ body {
 
 #leaderboard h1 {
   text-align: center;
+}
+
+.home {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 5%;
+}
+
+.home h1 {
+  color: var(--textP);
+  text-align: center;
+  font-family: Mandali, Monospace;
+}
+
+.home p {
+  color: var(--textS);
+  text-align: center;
+  font-family: Mandali, Monospace;
+  font-size: 1.5em;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.home #buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.home #Offline,
+#Online {
+  background-color: var(--accent);
+  color: var(--textT);
+  font-family: RobotoFlex, Monospace;
+  border: none;
+  font-size: 1.6em;
+}
+
+.home #board {
+  margin: 0% 5% 5%;
 }

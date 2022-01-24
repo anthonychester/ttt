@@ -10,6 +10,16 @@ export class Box extends React.Component<{ num: string; i: number }, {}> {
     super(props);
     this.props = props;
     this.state = { spot: win.board[props.i], id: "p1", i: props.i };
+    win.addEventListener("win", (e: any) => {
+      if (
+        this.state.i === e.detail.spots[0] ||
+        this.state.i === e.detail.spots[1] ||
+        this.state.i === e.detail.spots[2]
+      ) {
+        this.setState({ id: e.detail.winner + "-win" });
+        console.log(e.detail.winner + "-win");
+      }
+    });
   }
 
   press() {
@@ -53,9 +63,20 @@ export class Box extends React.Component<{ num: string; i: number }, {}> {
         if (b[arr[i][0]] === b[arr[i][1]] && b[arr[i][1]] === b[arr[i][2]]) {
           if (b[arr[i][0]] === win.p1t) {
             win.win = "p1";
-          } else if (b[arr[i][0]] === win.p1t) {
+          } else if (b[arr[i][0]] === win.p2t) {
             win.win = "p2";
           }
+          win.dispatchEvent(
+            new CustomEvent("win", {
+              detail: {
+                winner: win.win,
+                spots: [arr[i][0], arr[i][1], arr[i][2]]
+              },
+              bubbles: true,
+              cancelable: true,
+              composed: false
+            })
+          );
         }
       }
     }

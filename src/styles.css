@@ -61,6 +61,15 @@ body {
   font-size: 1.5em;
 }
 
+#p1-win {
+  background-color: green;
+  color: black;
+}
+#p2-win {
+  background-color: red;
+  color: black;
+}
+
 #p1 {
   color: green;
 }
@@ -112,7 +121,6 @@ body {
   color: #1f7174;
   text-align: center;
   border: 1px solid rgb(0, 0, 0);
-  background-color: ;
 }
 
 .lbrow td {
@@ -173,4 +181,57 @@ body {
 
 .home #board {
   margin: 0% 5% 5%;
+}
+
+.Signin #panel {
+  background-color: var(--secondary);
+  margin: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 3.5%;
+  padding-bottom: 5%;
+}
+
+.Signin {
+  color: var(--textP);
+}
+
+.Signin .line {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Signin input {
+  display: flex;
+  margin-top: 5%;
+  width: 70%;
+  border: 0.2em solid var(--primary);
+}
+
+.Signin h3 {
+  padding-top: 0.65em;
+  font-size: 1em;
+  margin-top: 5%;
+  width: 20%;
+}
+
+.Signin .line hr {
+  border: 0.1em solid var(--textP);
+  width: 30%;
+}
+.Signin .line h5 {
+  padding-top: 0.2em;
+}
+
+.Signin .line img {
+  width: 2em;
+  height: 2em;
+}
+
+.Signin .line button {
+  border: none;
+  background-color: var(--accent);
+  color: var(--textP);
+  margin: 3.5%;
 }

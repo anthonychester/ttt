@@ -1,6 +1,6 @@
 import React from "react";
 
-declare var require: any;
+declare let require: any;
 
 export class Signin extends React.Component {
   press(from: string) {

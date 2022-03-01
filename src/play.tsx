@@ -1,6 +1,7 @@
 import React from "react";
 import { Board } from "./board";
-
+import { Info } from "./info";
+import { Data } from "./data";
 export class Play extends React.Component {
   componentDidMount() {
     document.title = "Play";
@@ -10,8 +11,13 @@ export class Play extends React.Component {
   render() {
     return (
       <div className="play">
-        <Board />
-        <div className="cen-a"></div>
+        <div className="Board-half">
+          <Board />
+          <Data />
+        </div>
+        <div>
+          <Info />
+        </div>
       </div>
     );
   }

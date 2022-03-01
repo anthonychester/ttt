@@ -1,6 +1,6 @@
 import React from "react";
 
-declare let require: any;
+declare var require: any;
 
 export class Register extends React.Component {
   press(from: string) {

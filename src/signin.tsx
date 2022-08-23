@@ -1,11 +1,44 @@
 import React from "react";
 
 declare var require: any;
+let win: any = window;
+let signInWithEmailAndPassword = win.signInWithEmailAndPassword;
+let auth = win.auth;
 
 export class Signin extends React.Component {
-  press(from: string) {
-    console.log(from);
+  state: any;
+
+  constructor(props) {
+    super(props);
+    this.state = { top: "", password: "" };
   }
+
+  press(from: string) {
+    if (from == "email") {
+      console.log(this.state.email, this.state.password);
+
+      signInWithEmailAndPassword(auth, this.state.top, this.state.password)
+        .then((userCredential: any) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error: any) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          // ..
+        });
+    }
+  }
+
+  topChange = (event: any) => {
+    this.setState({ top: event.target.value });
+  };
+  passwordChange = (event: any) => {
+    this.setState({ password: event.target.value });
+  };
 
   render() {
     return (
@@ -14,11 +47,11 @@ export class Signin extends React.Component {
           <div>
             <div className="line">
               <h3>Username/Email: </h3>
-              <input type="text"></input>
+              <input type="text" onChange={this.topChange}></input>
             </div>
             <div className="line">
               <h3>Password: </h3>
-              <input type="text"></input>
+              <input type="text" onChange={this.passwordChange}></input>
             </div>
           </div>
           <div className="line">

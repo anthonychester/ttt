@@ -13,6 +13,15 @@ import { Signin } from "./signin";
 import { Settings } from "./settings";
 import { Profile } from "./profile";
 
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
+} from "firebase/auth";
+
 let win: any = window;
 
 win.playM = "local";
@@ -22,6 +31,22 @@ win.win = null;
 
 document.body.classList.toggle("dark-theme");
 
+// TODO: Replace the following with your app's Firebase project configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB2HmdSqOOxkwTLwFvh7jANJd9XOcyzsM0",
+  authDomain: "ttt-online-57bd5.firebaseapp.com",
+  projectId: "ttt-online-57bd5",
+  storageBucket: "ttt-online-57bd5.appspot.com",
+  messagingSenderId: "809302939107",
+  appId: "1:809302939107:web:a43eb45aef49fded86fcd6",
+  measurementId: "G-WL8W3CLW5P"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+win.auth = getAuth();
+win.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+win.signInWithEmailAndPassword = signInWithEmailAndPassword;
 export default function App() {
   return (
     <div>
